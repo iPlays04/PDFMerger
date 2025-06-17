@@ -4,6 +4,11 @@ from tkinter import filedialog
 
 file_paths = []
 
+bgclr = "#819A91"
+priclr = "#A7C1A8"
+secclr = "#D1D8BE"
+hiclr = "#EEEFE0"
+
 def pdfChoice():
     i=0
     global file_paths
@@ -20,15 +25,15 @@ def pdfChoice():
     for file in file_paths:
         boxesvars.append(tk.IntVar(value=0))
         
-        button =tk.Button(frPDFFrame,text="up", bg="grey", fg="white", command=lambda i=i: up(i))
+        button =tk.Button(frPDFFrame,text="up", bg=secclr, fg=bgclr, command=lambda i=i: up(i))
         buttons.append(button)
         button.grid(column=0,row=i)
 
-        spinbox = tk.Spinbox(frPDFFrame, bg="grey", fg="white", width=2,from_=1, to=len(file_paths),textvariable=boxesvars[i])
+        spinbox = tk.Spinbox(frPDFFrame, bg=secclr, fg=bgclr, width=2,from_=1, to=len(file_paths),textvariable=boxesvars[i])
         boxes.append(spinbox)
         spinbox.grid(column=1,row=i)
 
-        label = tk.Label(frPDFFrame, text=file.split('/')[-1], bg="grey", fg="white")
+        label = tk.Label(frPDFFrame, text=file.split('/')[-1], bg=secclr, fg=bgclr)
         label.grid(column=2,row=i)
 
         i=i+1
@@ -62,14 +67,16 @@ def up(index):
 # UI
 root = tk.Tk()
 root.title("Simple PDF Merger")
+root.geometry('300x620')
+root.configure(background=bgclr)
 
-btPdfChoice = tk.Button(root, text="PDF-Dateien wählen", command=pdfChoice)
+btPdfChoice = tk.Button(root, text="PDF-Dateien wählen", bg=priclr,  command=pdfChoice, width=40)
 btPdfChoice.pack(pady=10)
 
-frPDFFrame = tk.Frame(root, bg="grey")
+frPDFFrame = tk.Frame(root, bg=priclr, height=500, width=280)
 frPDFFrame.pack(pady=10)
 
-btStartMerge = tk.Button(root, text="Zusammenfügen", command=merge_pdfs)
+btStartMerge = tk.Button(root, text="Zusammenfügen", bg=priclr,  command=merge_pdfs, width=40)
 btStartMerge.pack(pady=10)
 
 

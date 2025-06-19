@@ -1,4 +1,4 @@
-import PyPDF2
+import PyPDF2,os
 import tkinter as tk
 from tkinter import filedialog
 
@@ -77,7 +77,8 @@ root = tk.Tk()
 root.title("Simple PDF Merger")
 root.geometry('400x620')
 root.configure(background=bgclr)
-root.iconphoto(False, tk.PhotoImage(file='.\\icon.png'))
+if(os.path.isfile('.\\icon.png')):
+    root.iconphoto(False, tk.PhotoImage(file='.\\icon.png'))
 
 btPdfChoice = tk.Button(root, text="PDF-Dateien wählen", bg=priclr,  command=pdfChoice, width=40)
 btPdfChoice.pack(pady=10)
